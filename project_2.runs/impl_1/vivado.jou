@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Dec  4 22:54:49 2024
+# Process ID: 10864
+# Current directory: D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/impl_1
+# Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/impl_1/top.vdi
+# Journal file: D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/impl_1\vivado.jou
+# Running On        :DESKTOP-00OOCNB
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :AMD Ryzen 5 2500U with Radeon Vega Mobile Gfx  
+# CPU Frequency     :1996 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :7469 MB
+# Swap memory       :8677 MB
+# Total Virtual     :16147 MB
+# Available Virtual :3366 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
