@@ -65,14 +65,16 @@ module vga_controller(
     wire v_sync_next, h_sync_next;
     
     // Register Control
-    always @(posedge clk_100MHz or posedge reset)
+//    always @(posedge clk_100MHz or posedge reset)
+    always @(posedge clk_100MHz)
         if(reset) begin
             v_count_reg <= 0;
             h_count_reg <= 0;
             v_sync_reg  <= 1'b0;
             h_sync_reg  <= 1'b0;
         end
-        else begin
+        else 
+        begin
             v_count_reg <= v_count_next;
             h_count_reg <= h_count_next;
             v_sync_reg  <= v_sync_next;
@@ -80,7 +82,7 @@ module vga_controller(
         end
          
     //Logic for horizontal counter
-    always @(posedge w_25MHz or posedge reset)      // pixel tick
+    always @(posedge w_25MHz or posedge reset)// pixel tick
         if(reset)
             h_count_next = 0;
         else

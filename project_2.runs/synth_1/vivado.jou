@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Dec  4 22:53:05 2024
-# Process ID: 15392
+# Start of session at: Sun Dec  8 21:49:48 2024
+# Process ID: 14472
 # Current directory: D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/synth_1/top.vds
@@ -17,8 +17,8 @@
 # CPU Physical cores:4
 # CPU Logical cores :8
 # Host memory       :7469 MB
-# Swap memory       :8497 MB
-# Total Virtual     :15967 MB
-# Available Virtual :3119 MB
+# Swap memory       :10947 MB
+# Total Virtual     :18416 MB
+# Available Virtual :3635 MB
 #-----------------------------------------------------------
 source top.tcl -notrace

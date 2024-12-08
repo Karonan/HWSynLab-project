@@ -1,13 +1,5 @@
 `timescale 1ns / 1ps
 
-// Reference book: "FPGA Prototyping by Verilog Examples"
-//                    "Xilinx Spartan-3 Version"
-// Authored by: Pong P. Chu
-// Published by: Wiley, 2008
-
-// Adapted for use on Basys 3 FPGA with Xilinx Artix-7
-// by: David J. Marion aka FPGA Dude
-
 module text_screen_gen(
     input clk, reset,
     input video_on,
@@ -41,7 +33,7 @@ module text_screen_gen(
     wire [6:0] cur_x_next;
     reg [4:0] cur_y_reg;
     wire [4:0] cur_y_next;
-    wire move_xl_tick, move_yu_tick, move_xr_tick, move_yd_tick, cursor_on, push;
+    wire cursor_on, push, rs;
     // delayed pixel count
     reg [9:0] pix_x1_reg, pix_y1_reg;
     reg [9:0] pix_x2_reg, pix_y2_reg;
@@ -49,26 +41,17 @@ module text_screen_gen(
     wire [11:0] text_rgb, text_rev_rgb;
     
     // body
-    // instantiate debounce for four buttons
-    debounce_chu db_left(.clk(clk), .reset(reset), .sw(left), .db_level(), .db_tick(move_xl_tick));
-    debounce_chu db_up(.clk(clk), .reset(reset), .sw(up), .db_level(), .db_tick(move_yu_tick));
-    debounce_chu db_down(.clk(clk), .reset(reset), .sw(down), .db_level(), .db_tick(move_yd_tick));
-    debounce_chu db_right(.clk(clk), .reset(reset), .sw(right), .db_level(), .db_tick(move_xr_tick));
-//    debounce_chu db_push(.clk(clk), .reset(reset), .sw(set), .db_level(), .db_tick(push));
-    singlePulser sp(push, clk, set);
-//    assign push = set;
+    singlePulser sp(rs, clk, reset);
+    singlePulser sp2(push, clk, set);
     // instantiate the ascii / font rom
     ascii_rom a_rom(.clk(clk), .addr(rom_addr), .data(font_word));
     // instantiate dual-port video RAM (2^12-by-7)
-    dual_port_ram dp_ram(.clk(clk), .we(we), .addr_a(addr_w), .addr_b(addr_r),
-                         .din_a(din), .dout_a(), .dout_b(dout));
+    dual_port_ram dp_ram(.clk(clk), .we(we), .reset(rs), .addr_a(addr_w), .addr_b(addr_r),
+                         .din_a(din), .dout_b(dout));
     
-    initial begin
-        cur_y_reg <= 2;
-    end
     // registers
-    always @(posedge clk or posedge reset)
-        if(reset) begin
+    always @(posedge clk or posedge rs)
+        if(rs) begin
             cur_x_reg <= 0;
             cur_y_reg <= 0;
             pix_x1_reg <= 0;
@@ -100,20 +83,18 @@ module text_screen_gen(
     assign bit_addr = pix_x2_reg[2:0];
     assign ascii_bit = font_word[~bit_addr];
     // new cursor position
-    assign cur_x_next = ((push && a == 7'b0000011)||(push && (cur_x_reg == MAX_X - 1)))? 0 :    
-                        (push) ? cur_x_reg + 1 :    // move right
-//                        (move_xl_tick) ? cur_x_reg - 1 :    // move left
-                        cur_x_reg;                          // no move
+    assign cur_x_next = (reset) ? 0 : ((push && a == 7'b0001010)||(push && (cur_x_reg == MAX_X - 1)))? 0 :    
+                        (push) ? cur_x_reg + 1 : cur_x_reg;               
                                            
-    assign cur_y_next = ((push && a == 7'b0000011) && (cur_y_reg == MAX_Y - 1)) ? 0 :    
-//                        (move_yu_tick) ? cur_y_reg - 1 :    // move up                        
-                        ((push && a == 7'b0000011)) ? cur_y_reg + 1 :    // move down
-                        cur_y_reg;                          // no move           
+    assign cur_y_next = (reset) ? 0 : ((push && a == 7'b0001010) && (cur_y_reg == MAX_Y - 1)) ? 0 :           
+                        (push && (a == 7'b0001010 || cur_x_reg == MAX_X - 1)) ? cur_y_reg + 1 : cur_y_reg;                          // no move           
     
     // object signals
     // green over black and reversed video for cursor
-    assign text_rgb = (ascii_bit) ? 12'h0F0 : 12'h000;
-    assign text_rev_rgb = (ascii_bit) ? 12'h000 : 12'h0F0;
+    assign text_rgb = ((pix_y2_reg[8:4] >= cur_y_reg && pix_x2_reg[9:3] > cur_x_reg) 
+                      || pix_y2_reg[8:4] > cur_y_reg) ? 12'h000 : 
+                      (ascii_bit) ? 12'h0F0 : 12'h000;
+    assign text_rev_rgb = 12'h0F0;
     // use delayed coordinates for comparison
     assign cursor_on = (pix_y2_reg[8:4] == cur_y_reg) &&
                        (pix_x2_reg[9:3] == cur_x_reg);

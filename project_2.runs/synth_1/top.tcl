@@ -58,11 +58,10 @@ if {$::dispatch::connected} {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
 set_param checkpoint.writeSynthRtdsInDcp 1
+set_param synth.incrementalSynthesisCache C:/Users/Naron/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11168-DESKTOP-00OOCNB/incrSyn
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
-set_msg_config  -id {17-179}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -79,19 +78,19 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/ascii_rom.v}
-  D:/Backup/awelyting/Year3/HWSynLab/Lab02/Lab02.srcs/sources_1/new/clockDiv.v
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/debounce.v}
-  D:/Backup/awelyting/Year3/HWSynLab/Lab02/Lab02.srcs/sources_1/new/quadSevenSeg.v
-  D:/Backup/awelyting/Year3/HWSynLab/Lab02/Lab02.srcs/sources_1/new/segmentDecoder.v
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/simple_dual_one_clock.v}
-  D:/Backup/awelyting/Year3/HWSynLab/Lab03/Lab03.srcs/sources_1/new/singlePulser.v
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/text_screen_gen.v}
-  {D:/Backup/awelyting/Year3/HWSynLab/New folder/uart.v}
-  {D:/Backup/awelyting/Year3/HWSynLab/New folder/uartRx.v}
-  {D:/Backup/awelyting/Year3/HWSynLab/New folder/uartTx.v}
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/vga_controller.v}
-  {D:/Backup/awelyting/Year3/HWSynLab/VGA Full Screen Text Editor/top.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/ascii_rom.v}
+  D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/new/clockDiv.v
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/debounce.v}
+  D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/new/quadSevenSeg.v
+  D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/new/segmentDecoder.v
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/simple_dual_one_clock.v}
+  D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/HWSynLab/Lab03/Lab03.srcs/sources_1/new/singlePulser.v
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/text_screen_gen.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/New folder/uart.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/New folder/uartRx.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/New folder/uartTx.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/vga_controller.v}
+  {D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/top.v}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -102,8 +101,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc D:/Backup/awelyting/Year3/HWSynLab/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files D:/Backup/awelyting/Year3/HWSynLab/Basys-3-Master.xdc]
+read_xdc D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 

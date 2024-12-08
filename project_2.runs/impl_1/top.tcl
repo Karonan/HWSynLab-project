@@ -97,10 +97,8 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
-set_msg_config  -id {17-179}  -suppress 
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -110,6 +108,7 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
   set_param checkpoint.writeSynthRtdsInDcp 1
+  set_param synth.incrementalSynthesisCache C:/Users/Naron/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11168-DESKTOP-00OOCNB/incrSyn
   set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 5  }
 OPTRACE "create in-memory project" START { }
@@ -127,7 +126,7 @@ OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.runs/synth_1/top.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc D:/Backup/awelyting/Year3/HWSynLab/Basys-3-Master.xdc
+  read_xdc D:/Backup/awelyting/Year3/HWSynLab/project_2/project_2.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
