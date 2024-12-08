@@ -11,7 +11,8 @@ module dual_port_ram
     input reset,
     input [ADDR_SIZE-1:0] addr_a, addr_b,
     input [DATA_SIZE-1:0] din_a,
-    output [DATA_SIZE-1:0] dout_b
+    output [DATA_SIZE-1:0] dout_b,
+    output busy
     );
     
     // Infer the RAM as block ram
@@ -19,17 +20,37 @@ module dual_port_ram
     
     reg [ADDR_SIZE-1:0] addr_a_reg, addr_b_reg;
 //    integer i;
-    reg [ADDR_SIZE-1:0] reset_counter;
-    reg reset_active;
+    reg [ADDR_SIZE-1:0] reset_counter = 0;
+    reg flag = 0;
     // body
+    
     always @(posedge clk) begin
-        if(we)      // write operation
-            ram[addr_a] <= din_a;
-        addr_a_reg <= addr_a;
-        addr_b_reg <= addr_b;
+        if(reset ==1 )begin
+            flag = 1;
+            reset_counter = 0;
+        end
+        else begin
+            if(flag == 0) begin
+                if(we)      // write operation
+                    ram[addr_a] <= din_a;
+                addr_a_reg <= addr_a;
+                addr_b_reg <= addr_b; 
+            end
+            else begin
+                ram[reset_counter] <= 0;
+                if(reset_counter == 4095) begin
+                    flag = 0;
+                    reset_counter = 0;
+                end
+                else begin
+                    reset_counter = reset_counter + 1 ;
+                end
+            end
+        end
     end
     
     // read operations      
     assign dout_b = ram[addr_b_reg];
+    assign busy = flag;
     
 endmodule

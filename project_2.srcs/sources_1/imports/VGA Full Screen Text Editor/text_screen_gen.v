@@ -39,6 +39,7 @@ module text_screen_gen(
     reg [9:0] pix_x2_reg, pix_y2_reg;
     // object output signals
     wire [11:0] text_rgb, text_rev_rgb;
+    wire busy;
     
     // body
     singlePulser sp(rs, clk, reset);
@@ -47,7 +48,7 @@ module text_screen_gen(
     ascii_rom a_rom(.clk(clk), .addr(rom_addr), .data(font_word));
     // instantiate dual-port video RAM (2^12-by-7)
     dual_port_ram dp_ram(.clk(clk), .we(we), .reset(rs), .addr_a(addr_w), .addr_b(addr_r),
-                         .din_a(din), .dout_b(dout));
+                         .din_a(din), .dout_b(dout),.busy(busy));
     
     // registers
     always @(posedge clk or posedge rs)
@@ -100,7 +101,7 @@ module text_screen_gen(
                        (pix_x2_reg[9:3] == cur_x_reg);
     // rgb multiplexing circuit
     always @*
-        if(~video_on)
+        if(~video_on || busy == 1)
             rgb = 12'h000;     // blank
         else
             if(cursor_on)
