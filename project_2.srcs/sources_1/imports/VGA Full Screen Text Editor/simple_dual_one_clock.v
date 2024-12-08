@@ -22,25 +22,11 @@ module dual_port_ram
     reg [ADDR_SIZE-1:0] reset_counter;
     reg reset_active;
     // body
-    always @(posedge clk or posedge reset) begin
-//        if (reset) begin
-//            // Start sequential reset
-//            reset_counter <= 0;
-//            reset_active <= 1'b1;
-//        end else if (reset_active) begin
-//            // Clear one memory location per clock cycle
-//            ram[reset_counter] <= 7'b0000000;
-//            reset_counter <= reset_counter + 1;
-//            if (reset_counter == (2**ADDR_SIZE - 1)) begin
-//                reset_active <= 1'b0; // Reset complete
-//            end
-//        end else 
-        begin
-            if(we)      // write operation
-                ram[addr_a] <= din_a;
-            addr_a_reg <= addr_a;
-            addr_b_reg <= addr_b;
-        end
+    always @(posedge clk) begin
+        if(we)      // write operation
+            ram[addr_a] <= din_a;
+        addr_a_reg <= addr_a;
+        addr_b_reg <= addr_b;
     end
     
     // read operations      
