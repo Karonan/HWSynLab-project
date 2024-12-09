@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Dec  9 01:55:18 2024
+| Date         : Mon Dec  9 07:49:26 2024
 | Host         : DESKTOP-HEPM84F running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |   100 |
-|    Minimum number of control sets                        |   100 |
+| Total control sets                                       |   102 |
+|    Minimum number of control sets                        |   102 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   197 |
+| Unused register locations in slices containing registers |   205 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,13 +39,13 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |   100 |
+| Total control sets |   102 |
 | >= 0 to < 4        |    21 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     1 |
-| >= 8 to < 10       |     0 |
+| >= 8 to < 10       |     2 |
 | >= 10 to < 12      |     2 |
-| >= 12 to < 14      |     1 |
+| >= 12 to < 14      |     2 |
 | >= 14 to < 16      |     1 |
 | >= 16              |    71 |
 +--------------------+-------+
@@ -58,121 +58,123 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              52 |           32 |
-| No           | No                    | Yes                    |              44 |           14 |
-| No           | Yes                   | No                     |              22 |            7 |
-| Yes          | No                    | No                     |              68 |           28 |
-| Yes          | No                    | Yes                    |              70 |           33 |
-| Yes          | Yes                   | No                     |              27 |            9 |
+| No           | No                    | No                     |             264 |          245 |
+| No           | No                    | Yes                    |              44 |           19 |
+| No           | Yes                   | No                     |              22 |           10 |
+| Yes          | No                    | No                     |              64 |           35 |
+| Yes          | No                    | Yes                    |              65 |           25 |
+| Yes          | Yes                   | No                     |              56 |           19 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------------------+---------------------------------------------+----------------------------------------------------+------------------+----------------+--------------+
-|             Clock Signal            |                Enable Signal                |                  Set/Reset Signal                  | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------------------------+---------------------------------------------+----------------------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG                      | tsg/sp/sout_i_1__0_n_0                      | tsg/sp/sout0                                       |                1 |              1 |         1.00 |
-|  uart/genblk1[1].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[4].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                      | uart/transmitter/r_SM_Main[2]               |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[10].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[0].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[2].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[7].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[8].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[3].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[5].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[6].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[13].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[16].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[11].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[14].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[9].fDiv/clkDiv_reg_0  |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[12].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[15].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/genblk1[17].fDiv/clkDiv_reg_0 |                                             |                                                    |                1 |              1 |         1.00 |
-|  uart/fdivTarget/CLK                |                                             |                                                    |                1 |              2 |         2.00 |
-|  clk_IBUF_BUFG                      | vga/CLK                                     |                                                    |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                      | uart/receiver/waitReg[3]_i_1_n_0            |                                                    |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                      | tsg/sp2/sout_reg_1                          | tsg/sp/rs                                          |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG                      | db_push/E[0]                                |                                                    |                2 |              7 |         3.50 |
-|  vga/CLK                            |                                             | reset_IBUF                                         |                4 |             10 |         2.50 |
-|  vga/CLK                            | vga/v_count_next_1                          | reset_IBUF                                         |                3 |             10 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/E[0]                             | tsg/sp/rs                                          |                4 |             12 |         3.00 |
-|  clk_IBUF_BUFG                      | uart/transmitter/r_Clock_Count              | uart/transmitter/FSM_sequential_r_SM_Main_reg[0]_0 |                4 |             14 |         3.50 |
-|  clk_IBUF_BUFG                      | uart/receiver/r_Clock_Count[15]_i_1_n_0     |                                                    |                7 |             16 |         2.29 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2688_2751_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2560_2623_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2496_2559_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_256_319_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2624_2687_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2816_2879_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3072_3135_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2944_3007_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2880_2943_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3008_3071_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3136_3199_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3200_3263_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2752_2815_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3648_3711_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_320_383_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3456_3519_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3264_3327_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3584_3647_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3392_3455_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3328_3391_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1536_1599_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3776_3839_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3840_3903_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_4032_4095_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_448_511_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_384_447_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3712_3775_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3968_4031_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3904_3967_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_512_575_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_640_703_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_768_831_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_576_639_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_704_767_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_832_895_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_64_127_0_2_i_1_n_0    |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_960_1023_0_2_i_1_n_0  |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_896_959_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_0_63_0_2_i_4_n_0      |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1088_1151_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1024_1087_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1152_1215_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1344_1407_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1216_1279_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1280_1343_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_128_191_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1408_1471_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1600_1663_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1792_1855_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1664_1727_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1856_1919_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3520_3583_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1728_1791_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1472_1535_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2240_2303_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2304_2367_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2176_2239_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_192_255_0_2_i_1_n_0   |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2048_2111_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1984_2047_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1920_1983_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2112_2175_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2368_2431_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2432_2495_0_2_i_1_n_0 |                                                    |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                      | db_push/q_next_0                            | reset_IBUF                                         |                6 |             21 |         3.50 |
-|  clk_IBUF_BUFG                      |                                             | reset_IBUF                                         |                9 |             26 |         2.89 |
-|  clk_IBUF_BUFG                      |                                             | tsg/sp/rs                                          |                8 |             30 |         3.75 |
-|  clk_IBUF_BUFG                      |                                             |                                                    |               13 |             32 |         2.46 |
-|  clk_IBUF_BUFG                      | tsg/sp2/sout_reg_0                          | tsg/sp/rs                                          |               22 |             34 |         1.55 |
-|  clk_IBUF_BUFG                      | tsg/dp_ram/addr_b_reg_1                     |                                                    |               16 |             36 |         2.25 |
-+-------------------------------------+---------------------------------------------+----------------------------------------------------+------------------+----------------+--------------+
++-------------------------------------+---------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|             Clock Signal            |                Enable Signal                |         Set/Reset Signal        | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------------+---------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|  uart/genblk1[5].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                      | uart/transmitter/r_SM_Main[2]               |                                 |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                      | tsg/sp/sout_i_1__0_n_0                      | tsg/sp/sout0                    |                1 |              1 |         1.00 |
+|  uart/genblk1[0].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[2].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[4].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[10].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[3].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[12].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[9].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[6].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[8].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[7].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[11].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[1].fDiv/clkDiv_reg_0  |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[15].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[16].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[17].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[14].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/genblk1[13].fDiv/clkDiv_reg_0 |                                             |                                 |                1 |              1 |         1.00 |
+|  uart/fdivTarget/CLK                |                                             |                                 |                1 |              2 |         2.00 |
+|  clk_IBUF_BUFG                      | uart/receiver/waitReg[3]_i_1_n_0            |                                 |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG                      | tsg/sp2/E[0]                                | tsg/sp/rs                       |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG                      | uart/transmitter/r_Tx_Data_0                |                                 |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG                      | vga/E[0]                                    | vga/SR[0]                       |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG                      | vga/r_25MHz_reg[1]_0[0]                     | vga/SR[0]                       |                4 |              9 |         2.25 |
+|  vga/w_p_tick                       |                                             | reset_IBUF                      |                6 |             10 |         1.67 |
+|  vga/w_p_tick                       | vga/v_count_next                            | reset_IBUF                      |                5 |             10 |         2.00 |
+|  clk_IBUF_BUFG                      | vga/r_25MHz_reg[0]_0[0]                     | vga/SS[0]                       |                4 |             12 |         3.00 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/E[0]                             | tsg/sp/rs                       |                3 |             12 |         4.00 |
+|  clk_IBUF_BUFG                      | uart/transmitter/r_Clock_Count              | uart/transmitter/r_Clock_Count0 |                4 |             14 |         3.50 |
+|  clk_IBUF_BUFG                      | uart/receiver/r_Clock_Count[15]_i_1_n_0     |                                 |                6 |             16 |         2.67 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1984_2047_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2176_2239_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2240_2303_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2048_2111_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2432_2495_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2624_2687_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2752_2815_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2560_2623_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2688_2751_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2496_2559_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2816_2879_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_256_319_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3264_3327_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3200_3263_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2944_3007_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3008_3071_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3072_3135_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_320_383_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3136_3199_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1280_1343_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3456_3519_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3712_3775_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3520_3583_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3776_3839_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3328_3391_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3648_3711_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3392_3455_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3584_3647_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_448_511_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_4032_4095_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_576_639_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3840_3903_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_384_447_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3904_3967_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_3968_4031_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_512_575_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_832_895_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_640_703_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_768_831_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_64_127_0_2_i_1_n_0    |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_704_767_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_960_1023_0_2_i_1_n_0  |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_0_63_0_2_i_4_n_0      |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1024_1087_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1472_1535_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1344_1407_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1408_1471_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1216_1279_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1088_1151_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1152_1215_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_128_191_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2880_2943_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1792_1855_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1536_1599_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1856_1919_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1920_1983_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_192_255_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1600_1663_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1728_1791_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_1664_1727_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2304_2367_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2368_2431_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_2112_2175_0_2_i_1_n_0 |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | tsg/dp_ram/ram_reg_r1_896_959_0_2_i_1_n_0   |                                 |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                      | db_push/q_next                              | reset_IBUF                      |                5 |             21 |         4.20 |
+|  clk_IBUF_BUFG                      |                                             | reset_IBUF                      |               13 |             26 |         2.00 |
+|  clk_IBUF_BUFG                      | tsg/sp2/sout_reg_1                          | tsg/sp/rs                       |               13 |             29 |         2.23 |
+|  clk_IBUF_BUFG                      |                                             | tsg/sp/rs                       |               10 |             30 |         3.00 |
+|  clk_IBUF_BUFG                      | tsg/sp/sout_reg_0                           |                                 |               24 |             36 |         1.50 |
+|  clk_IBUF_BUFG                      |                                             |                                 |              226 |           1092 |         4.83 |
++-------------------------------------+---------------------------------------------+---------------------------------+------------------+----------------+--------------+
 
 

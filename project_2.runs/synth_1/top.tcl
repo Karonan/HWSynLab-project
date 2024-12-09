@@ -73,10 +73,15 @@ set_property ip_output_repo c:/Users/pongp/Desktop/project/project_2.cache/ip [c
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_mem {
+  C:/Users/pongp/Desktop/rom.data
+  C:/Users/pongp/Desktop/romFinal.data
+}
 read_verilog -library xil_defaultlib {
   {C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/ascii_rom.v}
   C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/new/clockDiv.v
   {C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/debounce.v}
+  C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/new/interfaceRom.v
   C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/new/quadSevenSeg.v
   C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/new/segmentDecoder.v
   {C:/Users/pongp/Desktop/project/project_2.srcs/sources_1/imports/VGA Full Screen Text Editor/simple_dual_one_clock.v}

@@ -41,10 +41,58 @@ module top(
    
     uart uart(.clk(clk), .out(sw), .send(push), .RsRx(RsRx), .RsTx(RsTx),
               .data_in(a), .seg(seg), .an(an), .dp(dp), .received(received));
+              
+
+              
+     wire [319:0] interface;
+     reg [7:0] y = 0;
+     reg [8:0] x = 0;
+     reg oe = 1, we = 0;
+     
+     rom rom(interface,y,oe,clk,we);
     // rgb buffer
     always @(posedge clk)
-        if(w_p_tick)
-            rgb_reg <= rgb_next;
+        if(reset || (w_y == 480 &&w_x == 640)) begin
+            x = 0;
+            y = 0;
+        end
+        else if(w_p_tick) begin
+            if(w_x>= 319 && w_x<639 && w_y>=223 && w_y<479) begin
+                if(interface[x] == 0) begin
+                    rgb_reg <= 0;
+                end
+                else begin
+                    rgb_reg <= 12'b111111111111;
+                end
+                
+                if(x == 319 && y == 255) begin
+                    x = 0;
+                    y = 0;
+                end
+                
+                else if(x == 319) begin
+                    x = 0;
+                    y = y+1;
+                end
+                
+                else begin
+                    x = x+1;
+                end
+                
+            end
+            
+            else if (w_x == 320 && w_y <=240) begin
+                rgb_reg <= 12'b111111111111;
+            end
+            
+            else if (w_x <= 320 && w_y ==240) begin
+                rgb_reg <= 12'b111111111111;
+            end
+               
+            else begin
+                rgb_reg <= rgb_next;
+            end
+        end
             
     // output
     assign rgb = rgb_reg;

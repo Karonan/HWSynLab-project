@@ -26,8 +26,8 @@ module text_screen_gen(
     wire [11:0] addr_r, addr_w;
     wire [6:0] din, dout;
     // 80-by-30 tile map
-    parameter MAX_X = 80;   // 640 pixels / 8 data bits = 80
-    parameter MAX_Y = 30;   // 480 pixels / 16 data rows = 30
+    parameter MAX_X = 40;   // 640 pixels / 8 data bits = 80
+    parameter MAX_Y = 15;   // 480 pixels / 16 data rows = 30
     // cursor
     reg [6:0] cur_x_reg;
     wire [6:0] cur_x_next;
