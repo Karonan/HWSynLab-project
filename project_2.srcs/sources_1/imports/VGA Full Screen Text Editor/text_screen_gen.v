@@ -4,10 +4,6 @@ module text_screen_gen(
     input clk, reset,
     input video_on,
     input set,
-    input up,
-    input down,
-    input left,
-    input right,
     input [6:0] a,
     input [9:0] x, y,
     output reg [11:0] rgb

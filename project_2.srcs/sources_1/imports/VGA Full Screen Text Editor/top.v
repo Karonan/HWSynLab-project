@@ -4,10 +4,6 @@ module top(
     input clk,              // 100MHz Basys 3
     input reset,            // sw[15]
     input set,              // btnC
-    input up,               // btnU
-    input down,             // btnD
-    input left,             // btnL
-    input right,            // btnR
     input [6:0] sw,
     input RsRx,
     output RsTx,
@@ -34,7 +30,6 @@ module top(
     
     // instantiate text generation circuit
     text_screen_gen tsg(.clk(clk), .reset(reset), .video_on(w_vid_on), .set(received),
-                        .up(up), .down(down), .left(left), .right(right),
                         .a(a[6:0]), .x(w_x), .y(w_y), .rgb(rgb_next));
                         
     debounce_chu db_push(.clk(clk), .reset(reset), .sw(set), .db_level(), .db_tick(push));
